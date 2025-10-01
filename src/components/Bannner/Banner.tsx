@@ -5,6 +5,8 @@ import { useState, useEffect } from "react";
 import profile from "../../../public/images/profile.png";
 import LightRays from "../LightRays";
 import TextType from "../TextType";
+import { Button } from "../ui/button";
+import Link from "next/link";
 
 export default function Banner() {
   const [bubbles, setBubbles] = useState<
@@ -46,15 +48,17 @@ export default function Banner() {
       </div>
 
       {/* Left Side */}
-      <div className="w-full md:w-1/2 max-w-xl text-center md:text-left z-10 mt-8 md:mt-0">
+      <div className="w-full md:w-1/2 max-w-xl text-center md:text-left z-10 mt-16 md:mt-0">
         <p className="uppercase tracking-wide text-gray-400 font-poppins">Hello</p>
         <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mt-2 font-poppins">
           I’m <span className="text-white">Khandaker Istekharul Haque</span>
         </h1>
-        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mt-2">
-          A{" "}
+        <div className="text-2xl sm:text-3xl md:text-4xl font-bold mt-2 flex max-sm:flex-col gap-2">
+          <h1>
+            A
+          </h1>
           <TextType
-            text={["Web Developer...", "Frontend Developer...", "MERN Stack Developer..."]}
+            text={["Web Developer.", "Frontend Developer.", "MERN Stack Developer."]}
             typingSpeed={30}                 // faster typing
             deletingSpeed={20}               // faster deletion
             pauseDuration={800}              // shorter pause
@@ -63,14 +67,16 @@ export default function Banner() {
             cursorCharacter="|"
             className="inline-block text-transparent bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text"
           />
-        </h2>
+        </div>
         <p className="mt-4 sm:mt-6 text-gray-400 leading-relaxed text-sm sm:text-base font-fira font-semibold">
           I specialize in creating responsive and dynamic web applications that deliver exceptional user experiences.
         </p>
 
-        <button className="mt-6 sm:mt-8 px-5 sm:px-6 py-2.5 sm:py-3 rounded-full bg-gradient-to-r from-blue-500 to-cyan-400 text-black font-semibold shadow-lg hover:scale-105 transition">
-          View Portfolio →
-        </button>
+        <Link href="/projects">
+          <Button className="mt-8" variant="gradient" size="lg">
+            View Projects →
+          </Button>
+        </Link>
       </div>
 
       {/* Right Side - Image */}
