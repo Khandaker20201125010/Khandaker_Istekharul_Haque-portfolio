@@ -72,30 +72,37 @@ function Button({
     >
       <style>{customCss}</style>
 
-   {variant === "gradient" && (
-  <>
-    {/* Shimmer ring around border */}
-    <span
-      className="absolute inset-0 rounded-full p-[3px] overflow-hidden z-[-3]"
-      style={{
-        background:
-          "conic-gradient(from var(--angle), transparent 10%, #3b82f6, transparent 30%)",
-        animation: "shimmer-spin 2.5s linear infinite",
-      }}
-    >
-      {/* Inner dark background (so shimmer is only border) */}
-      <span className="absolute inset-[2px] rounded-full bg-gradient-to-br from-black via-black to-blue-950" />
-    </span>
+      {variant === "gradient" && (
+        <>
+          {/* Shimmer ring around border */}
+          <span
+            className="absolute inset-0 rounded-full p-[3px] overflow-hidden z-[-3]"
+            style={{
+              background:
+                "conic-gradient(from var(--angle), transparent 10%, #3b82f6, transparent 30%)",
+              animation: "shimmer-spin 2.5s linear infinite",
+            }}
+          >
+            {/* Inner dark background (so shimmer is only border) */}
+            <span className="absolute inset-[2px] rounded-full bg-gradient-to-br from-black via-black to-blue-950" />
+          </span>
 
-    {/* Sliding hover gradient (your original effect) */}
-    <span className="absolute inset-0 z-[-2] -translate-x-full bg-gradient-to-r from-blue-950 via-blue-950 to-sky-900 transition-transform duration-300 ease-in-out group-hover:translate-x-0 rounded-full" />
-
-    {/* Button text */}
-    <span className="relative z-10 transition-colors duration-300 group-hover:text-white">
-      {children}
-    </span>
-  </>
-)}
+          {/* Sliding hover gradient (your original effect) */}
+          <span
+            className="absolute inset-0 z-[-2] -translate-x-full 
+    bg-gradient-to-r from-indigo-950 via-blue-950 to-blue-900 
+    transition-transform duration-500 ease-in-out 
+    group-hover:translate-x-0 rounded-full"
+            style={{
+              boxShadow: "0 0 15px rgba(56,189,248,0.6), 0 0 30px rgba(56,189,248,0.4)",
+            }}
+          />
+          {/* Button text */}
+          <span className="relative z-10 transition-colors duration-300 group-hover:text-white">
+            {children}
+          </span>
+        </>
+      )}
 
 
       {variant !== "gradient" && <span className="relative">{children}</span>}
