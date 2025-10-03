@@ -1,5 +1,5 @@
 import React from 'react';
-import CreateBlogsForm from '../../(dasboardPublicComponenets)/CreateBlogsForm/CreateBlogsForm';
+import CreateBlogsForm from '../../(dasboardPublicComponenets)/Blogscomponents/CreateBlogsForm/CreateBlogsForm';
 
 const CreateBlogs = () => {
     return (

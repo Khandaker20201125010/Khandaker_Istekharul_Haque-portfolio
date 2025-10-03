@@ -4,7 +4,7 @@
 import React, { useState } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { useRouter } from 'next/navigation';
-import { login as loginAPI } from '@/actions/auth';
+
 import { AiOutlineUser, AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai';
 import { FcGoogle } from 'react-icons/fc';
 import { signIn } from "next-auth/react";
@@ -43,9 +43,6 @@ const onSubmit: SubmitHandler<LoginFormInputs> = async (data) => {
   }
 };
   
-  const handleSocialLogin = (provider: "google" | "github") => {
-    console.log(`Login with ${provider}`);
-  };
 
 
   return (
