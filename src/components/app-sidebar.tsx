@@ -25,11 +25,14 @@ const data: { navMain: NavItem[] } = {
   navMain: [
     {
       title: "Project Overview",
-      items: [{ title: "Projects Management", url: "/dashboard/Manage-Projects" }],
+      items: [{ title: "Projects Management", url: "/dashboard/Manage-Projects" },
+      { title: "Create Projects", url: "/dashboard/create-projects" },],
     },
-    {
+    { 
       title: "Blogs Overview",
-      items: [{ title: "Blogs Management", url: "/dashboard/manage-blogs" }],
+      items: [{ title: "Blogs Management", url: "/dashboard/manage-blogs" },
+      { title: "Create Blogs", url: "/dashboard/create-blogs" },
+      ],
     },
     {
       title: "Dashboard Home",

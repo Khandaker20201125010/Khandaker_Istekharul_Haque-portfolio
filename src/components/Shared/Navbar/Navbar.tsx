@@ -17,6 +17,8 @@ import {
 
 import Image from "next/image";
 import Link from "next/link";
+import { useSession } from "next-auth/react";
+
 interface NavItem {
   icon: React.ReactNode;
   label: string;
@@ -49,6 +51,13 @@ const navItems: NavItem[] = [
     gradient:
       "radial-gradient(circle, rgba(34,197,94,0.15) 0%, rgba(22,163,74,0.06) 50%, rgba(21,128,61,0) 100%)",
     iconColor: "group-hover:text-green-500 dark:group-hover:text-green-400",
+  },
+  {
+    icon: <Settings className="h-5 w-5" />,
+    label: "Blogs",
+    path: "/blogs",
+    gradient: "radial-gradient(circle, rgba(168,85,247,0.15) 0%, rgba(147,51,234,0.06) 50%, rgba(126,34,206,0) 100%)",
+    iconColor: "group-hover:text-purple-500 dark:group-hover:text-purple-400",
   },
   {
 
@@ -143,6 +152,8 @@ function NavBar(): React.JSX.Element {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+ const { data: session } = useSession();
+ console.log(session);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -158,12 +169,11 @@ function NavBar(): React.JSX.Element {
   }, []);
 
   return (
-     <motion.nav
-      className={`sticky top-0 z-50 w-full overflow-hidden border-gray-200/60 p-3 backdrop-blur-lg transition-colors duration-300 ${
-        isScrolled
+    <motion.nav
+      className={`sticky top-0 z-50 w-full overflow-hidden border-gray-200/60 p-3 backdrop-blur-lg transition-colors duration-300 ${isScrolled
           ? "bg-black dark:bg-black/90"
           : "bg-transparent dark:bg-transparent"
-      }`}
+        }`}
       initial="initial"
       whileHover="hover"
     >

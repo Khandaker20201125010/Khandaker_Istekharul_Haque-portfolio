@@ -88,7 +88,7 @@ export default function Banner() {
           alt="Web Developer"
           width={400}
           height={500}
-          className="object-contain z-10"
+          className="object-contain z-10 max-w-[90%] h-auto w-auto"
           priority
         />
 

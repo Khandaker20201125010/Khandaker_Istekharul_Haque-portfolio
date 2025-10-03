@@ -23,7 +23,7 @@ interface LogoProps {
 }
 
 
-const LogoImage = ({ src, alt, size = 40, className }: { src: any; alt?: string; size?: number; className?: string }) => (
+const LogoImage = ({ src, alt, size = 80, className }: { src: any; alt?: string; size?: number; className?: string }) => (
     <Image
         src={src}
         alt={alt ?? ''}
@@ -106,7 +106,7 @@ function Logomarquee() {
 
         return (
             <div
-                className="max-w-full overflow-hidden"
+                className="container mx-auto overflow-hidden"
                 style={{
                     '--speed': speed,
                     '--numItems': numItems,
@@ -117,7 +117,7 @@ function Logomarquee() {
                 } as React.CSSProperties}
             >
                 <div
-                    className="w-max flex"
+                    className="  bg-black flex "
                     style={{
                         '--track-width': `calc(var(--item-width) * ${numItems})`,
                         '--track-gap': `calc(var(--item-gap) * ${numItems})`,
@@ -126,7 +126,7 @@ function Logomarquee() {
                     {[...logos, ...logos].map((logo, index) => (
                         <div
                             key={index}
-                            className="flex-shrink-0 flex justify-center items-center bg-gradient-to-br from-blue-500/20 via-gray-700 to-blue-500/30 border border-black rounded-2xl text-white"
+                            className="flex-shrink-0 flex justify-center items-center bg-gradient-to-br from-blue-950 via-sky-900 to-blue-950 border border-black rounded-2xl text-white hover:border-blue-500"
                             style={{
                                 width: 'var(--item-width)',
                                 aspectRatio: '1 / 1.2',
@@ -134,7 +134,7 @@ function Logomarquee() {
                                 animation: `marquee-move var(--speed) linear infinite ${direction}`,
                             } as React.CSSProperties}
                         >
-                            <div className="flex justify-center items-center w-full h-full">
+                            <div className="flex justify-center items-center w-full h-full ">
                                 {logo.component}
                             </div>
                         </div>

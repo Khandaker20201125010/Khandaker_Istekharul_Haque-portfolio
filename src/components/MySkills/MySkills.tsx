@@ -26,16 +26,18 @@ const MySkills = () => {
         <section className="relative container mx-auto my-20 px-4 flex flex-col lg:flex-row gap-10">
             {/* Left Side */}
             <div className="relative flex-1 flex flex-col justify-center">
-             
+
                 <div className="relative">
-                    
-                     <div className="absolute h-[250px] w-[400px] max-sm:w-[90%] rounded-full opacity-50 blur-[180px] dark:bg-blue-700"></div>
-                    <h2 className="text-gray-400 uppercase tracking-wide mb-2">My Skills</h2>
-                    <h1 className="text-3xl md:text-6xl font-bold font-inter text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-cyan-500">
-                        My Skills <br /> Field Here ...
-                    </h1>
+
+                    <div className="absolute h-[250px] w-[400px] max-sm:w-[90%] rounded-full opacity-50 blur-[180px] dark:bg-blue-700"></div>
+                    <div className="text-start max-sm:text-center">
+                        <h2 className="text-gray-400 uppercase tracking-wide mb-2">My Skills</h2>
+                        <h1 className="text-3xl md:text-6xl font-bold font-inter text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-cyan-500">
+                            My Skills <br /> Field Here ...
+                        </h1>
+                    </div>
                 </div>
-                <Button variant="gradient" className="mt-20 w-max">
+                <Button variant="gradient" className="mt-20 w-max max-sm:w-full">
                     <div className="flex items-center gap-2 text-2xl">
                         <span>Get Resume</span>
                         <Download className="w-8 h-8" />

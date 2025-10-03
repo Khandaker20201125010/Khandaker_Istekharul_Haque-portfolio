@@ -158,7 +158,7 @@
   .shine-line {
     position: absolute;
     width: 1px; /* match grid line thickness */
-    height: 40%; /* shorter highlight */
+    height: 350px; /* shorter highlight */
     background: linear-gradient(
       to bottom,
       transparent 0%,
