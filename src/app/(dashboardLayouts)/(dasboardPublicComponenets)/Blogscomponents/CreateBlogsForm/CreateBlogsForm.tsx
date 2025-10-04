@@ -2,10 +2,11 @@
 "use client";
 
 import { useState } from "react";
-import { create } from "@/actions/create";
+
 import SingleImageUploader from "@/components/SingleImageUploader";
 import { toast } from "react-hot-toast";
 import { Button } from "@/components/ui/button";
+import { createBlogs } from "@/actions/create";
 
 export default function CreateBlogForm() {
   const [isFeatured, setIsFeatured] = useState(false);
@@ -21,7 +22,7 @@ export default function CreateBlogForm() {
   try {
     const formData = new FormData(formEl);
     formData.set("isFeatured", String(isFeatured));
-    const result = await create(formData, image);
+    const result = await createBlogs(formData, image);
 
     toast.success("Blog created successfully!");
     console.log("Created blog:", result);

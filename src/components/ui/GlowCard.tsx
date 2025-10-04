@@ -177,9 +177,7 @@ const GlowCard: React.FC<GlowCardProps> = ({
                 <div className="flex flex-col gap-2">
                     
                     <h3 className="text-xl font-bold text-blue-400">Service Title</h3>
-                    <p className="text-sm text-gray-300 leading-relaxed">
-                        Service description goes here.
-                    </p>
+                  
                 </div>
                 {children}
             </div>

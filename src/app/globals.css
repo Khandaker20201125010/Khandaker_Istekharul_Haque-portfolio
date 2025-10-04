@@ -245,4 +245,11 @@
 .animate-spin-slow {
   animation: spin-slow 40s linear infinite;
 }
- 
+ .scrollbar-hide {
+  -ms-overflow-style: none;  /* IE & Edge */
+  scrollbar-width: none;     /* Firefox */
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;             /* Chrome, Safari, Opera */
+}

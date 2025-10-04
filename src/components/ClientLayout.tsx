@@ -12,16 +12,18 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
   return (
     <SessionProvider>
       {!isDashboard && <Navbar />}
-      <main className="min-h-dvh relative">
-        <div className="absolute inset-0 z-0 bg-gridSq h-full">
+      <main className="relative min-h-screen">
+        <div className="fixed inset-0 z-0 bg-gridSq">
           <div className="shine-line"></div>
           <div className="shine-line"></div>
           <div className="shine-line"></div>
           <div className="shine-line"></div>
           <div className="shine-line"></div>
         </div>
+
         <div className="relative z-10">{children}</div>
       </main>
+
       {!isDashboard && <Footer />}
     </SessionProvider>
   );

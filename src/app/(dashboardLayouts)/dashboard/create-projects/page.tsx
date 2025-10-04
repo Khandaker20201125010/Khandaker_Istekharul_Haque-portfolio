@@ -1,11 +1,12 @@
 import React from 'react';
+import CreateProjectForm from '../../(dasboardPublicComponenets)/ProjectsComponents/CreateProjectForm/CreateProjectForm';
 
-const CreateBlogs = () => {
+const CreateProjects = () => {
     return (
         <div>
-            
+            <CreateProjectForm />
         </div>
     );
 };
 
-export default CreateBlogs;
+export default CreateProjects;

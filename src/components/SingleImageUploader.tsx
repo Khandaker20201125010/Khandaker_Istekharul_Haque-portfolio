@@ -1,114 +1,125 @@
-'use client'
+'use client';
+
+import { useState } from 'react';
+import Image from 'next/image';
 import { AlertCircleIcon, ImageUpIcon, XIcon } from 'lucide-react';
+import imageCompression from 'browser-image-compression';
 
-import { useFileUpload } from '@/hooks/use-file-upload';
-import { useEffect } from 'react';
-
-  interface SingleImageUploaderProps {
-    onChange: (file: File | null) => void;
-  }
+interface SingleImageUploaderProps {
+  onChange: (file: File | null) => void;
+}
 
 export default function SingleImageUploader({ onChange }: SingleImageUploaderProps) {
+  const [preview, setPreview] = useState<string | null>(null);
+  const [error, setError] = useState<string | null>(null);
+  const [isDragging, setIsDragging] = useState(false);
+
   const maxSizeMB = 5;
-  const maxSize = maxSizeMB * 1024 * 1024; // 5MB default
 
-  const [
-    { files, isDragging, errors },
-    {
-      handleDragEnter,
-      handleDragLeave,
-      handleDragOver,
-      handleDrop,
-      openFileDialog,
-      removeFile,
-      getInputProps,
-    },
-  ] = useFileUpload({
-    accept: 'image/*',
-    maxSize,
-  });
+  const handleFile = async (file: File) => {
+    setError(null);
 
-useEffect(() => {
-  const firstFile = files[0]?.file;
-  if (firstFile instanceof File) {
-    onChange(firstFile);
-  } else {
+    // Validate size
+    if (file.size > maxSizeMB * 1024 * 1024) {
+      setError(`File size exceeds ${maxSizeMB}MB`);
+      return;
+    }
+
+    try {
+      // Compress image
+      const compressedFile = await imageCompression(file, {
+        maxSizeMB: 0.5,
+        maxWidthOrHeight: 1200,
+        useWebWorker: true,
+      });
+
+      const previewUrl = URL.createObjectURL(compressedFile);
+      setPreview(previewUrl);
+      onChange(compressedFile);
+    } catch (err) {
+      console.error('Image compression failed', err);
+      setError('Failed to compress image');
+      onChange(null);
+    }
+  };
+
+  const handleDrop = (e: React.DragEvent<HTMLDivElement>) => {
+    e.preventDefault();
+    setIsDragging(false);
+    const file = e.dataTransfer.files[0];
+    if (file) handleFile(file);
+  };
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) handleFile(file);
+  };
+
+  const removeImage = () => {
+    setPreview(null);
     onChange(null);
-  }
-}, [files]);
-
-
-  const previewUrl = files[0]?.preview || null;
+  };
 
   return (
     <div className="flex flex-col gap-2">
-      <div className="relative">
-        {/* Drop area */}
-        <div
-          role="button"
-          onClick={openFileDialog}
-          onDragEnter={handleDragEnter}
-          onDragLeave={handleDragLeave}
-          onDragOver={handleDragOver}
-          onDrop={handleDrop}
-          data-dragging={isDragging || undefined}
-          className="border-input hover:bg-accent/50 data-[dragging=true]:bg-accent/50 has-[input:focus]:border-ring has-[input:focus]:ring-ring/50 relative flex min-h-52 flex-col items-center justify-center overflow-hidden rounded-xl border border-dashed p-4 transition-colors has-disabled:pointer-events-none has-disabled:opacity-50 has-[img]:border-none has-[input:focus]:ring-[3px]"
-        >
-          <input
-            {...getInputProps()}
-            className="sr-only"
-            aria-label="Upload file"
-          />
-          {previewUrl ? (
-            <div className="absolute inset-0">
-              <img
-                src={previewUrl}
-                alt={files[0]?.file?.name || 'Uploaded image'}
-                className="size-full object-cover"
-              />
-            </div>
-          ) : (
-            <div className="flex flex-col items-center justify-center px-4 py-3 text-center">
-              <div
-                className="bg-background mb-2 flex size-11 shrink-0 items-center justify-center rounded-full border"
-                aria-hidden="true"
-              >
-                <ImageUpIcon className="size-4 opacity-60" />
-              </div>
-              <p className="mb-1.5 text-sm font-medium">
-                Drop your image here or click to browse
-              </p>
-              <p className="text-muted-foreground text-xs">
-                Max size: {maxSizeMB}MB
-              </p>
-            </div>
-          )}
-        </div>
-        {previewUrl && (
-          <div className="absolute top-4 right-4">
+      <div
+        className={`relative border-2 border-dashed rounded-xl p-4 transition-colors ${
+          isDragging ? 'bg-accent/50' : 'bg-gray-800/50'
+        }`}
+        onDragOver={(e) => {
+          e.preventDefault();
+          setIsDragging(true);
+        }}
+        onDragLeave={() => setIsDragging(false)}
+        onDrop={handleDrop}
+      >
+        {preview ? (
+          <div className="relative w-full h-52">
+            <Image
+              src={preview}
+              alt="Preview"
+              fill
+              className="object-cover rounded-xl"
+            />
             <button
               type="button"
-              className="focus-visible:border-ring focus-visible:ring-ring/50 z-50 flex size-8 cursor-pointer items-center justify-center rounded-full bg-black/60 text-white transition-[color,box-shadow] outline-none hover:bg-black/80 focus-visible:ring-[3px]"
-              onClick={() => removeFile(files[0]?.id)}
-              aria-label="Remove image"
+              onClick={removeImage}
+              className="absolute top-3 right-3 z-10 bg-black/60 hover:bg-black/80 rounded-full p-1"
             >
-              <XIcon className="size-4" aria-hidden="true" />
+              <XIcon className="w-4 h-4 text-white" />
             </button>
           </div>
+        ) : (
+          <label
+            htmlFor="fileInput"
+            className="flex flex-col items-center justify-center h-52 cursor-pointer"
+          >
+            <div className="bg-background mb-2 flex size-11 items-center justify-center rounded-full border">
+              <ImageUpIcon className="size-4 opacity-60" />
+            </div>
+            <p className="mb-1.5 text-sm font-medium">
+              Drop your image here or click to browse
+            </p>
+            <p className="text-muted-foreground text-xs">
+              Max size: {maxSizeMB}MB
+            </p>
+            <input
+              id="fileInput"
+              type="file"
+              accept="image/*"
+              className="hidden"
+              onChange={handleChange}
+            />
+          </label>
         )}
       </div>
 
-      {errors.length > 0 && (
-        <div
-          className="text-destructive flex items-center gap-1 text-xs"
-          role="alert"
-        >
+      {error && (
+        <div className="text-destructive flex items-center gap-1 text-xs" role="alert">
           <AlertCircleIcon className="size-3 shrink-0" />
-          <span>{errors[0]}</span>
+          <span>{error}</span>
         </div>
       )}
-
-   
     </div>
   );
 }

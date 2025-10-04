@@ -112,74 +112,74 @@ export default function LookingForOpportunities() {
                         </g>
 
                         {/* Orbiting icons */}
-{/* Orbiting icons */}
-<g>
-  <image
-    href={facebook.src}
-    width="32"
-    height="32"
-    x="-16"   // shift left half width
-    y="-16"   // shift up half height
-  >
-    <animateMotion
-      dur="18s"
-      repeatCount="indefinite"
-      rotate="auto"
-      path="M 500 220 m -520,0 a 520,120 0 1,1 1040,0 a 520,120 0 1,1 -1040,0"
-    />
-  </image>
-</g>
+                        {/* Orbiting icons */}
+                        <g>
+                            <image
+                                href={facebook.src}
+                                width="32"
+                                height="32"
+                                x="-16"   // shift left half width
+                                y="-16"   // shift up half height
+                            >
+                                <animateMotion
+                                    dur="18s"
+                                    repeatCount="indefinite"
+                                    rotate="auto"
+                                    path="M 500 220 m -520,0 a 520,120 0 1,1 1040,0 a 520,120 0 1,1 -1040,0"
+                                />
+                            </image>
+                        </g>
 
-<g>
-  <image
-    href={twitter.src}
-    width="28"
-    height="28"
-    x="-14"
-    y="-14"
-  >
-    <animateMotion
-      dur="14s"
-      repeatCount="indefinite"
-      rotate="auto"
-      path="M 500 220 m -420,0 a 420,90 0 1,1 840,0 a 420,90 0 1,1 -840,0"
-    />
-  </image>
-</g>
+                        <g>
+                            <image
+                                href={twitter.src}
+                                width="28"
+                                height="28"
+                                x="-14"
+                                y="-14"
+                            >
+                                <animateMotion
+                                    dur="14s"
+                                    repeatCount="indefinite"
+                                    rotate="auto"
+                                    path="M 500 220 m -420,0 a 420,90 0 1,1 840,0 a 420,90 0 1,1 -840,0"
+                                />
+                            </image>
+                        </g>
 
-<g>
-  <image
-    href={linkedin.src}
-    width="26"
-    height="26"
-    x="-13"
-    y="-13"
-  >
-    <animateMotion
-      dur="10s"
-      repeatCount="indefinite"
-      rotate="auto"
-      path="M 500 220 m -340,0 a 340,72 0 1,1 680,0 a 340,72 0 1,1 -680,0"
-    />
-  </image>
-</g>
+                        <g>
+                            <image
+                                href={linkedin.src}
+                                width="26"
+                                height="26"
+                                x="-13"
+                                y="-13"
+                            >
+                                <animateMotion
+                                    dur="10s"
+                                    repeatCount="indefinite"
+                                    rotate="auto"
+                                    path="M 500 220 m -340,0 a 340,72 0 1,1 680,0 a 340,72 0 1,1 -680,0"
+                                />
+                            </image>
+                        </g>
 
-<g>
-  <image
-    href={github.src}
-    width="24"
-    height="24"
-    x="-12"
-    y="-12"
-  >
-    <animateMotion
-      dur="7s"
-      repeatCount="indefinite"
-      rotate="auto"
-      path="M 500 220 m -260,0 a 260,54 0 1,1 520,0 a 260,54 0 1,1 -520,0"
-    />
-  </image>
-</g>
+                        <g>
+                            <image
+                                href={github.src}
+                                width="24"
+                                height="24"
+                                x="-12"
+                                y="-12"
+                            >
+                                <animateMotion
+                                    dur="7s"
+                                    repeatCount="indefinite"
+                                    rotate="auto"
+                                    path="M 500 220 m -260,0 a 260,54 0 1,1 520,0 a 260,54 0 1,1 -520,0"
+                                />
+                            </image>
+                        </g>
 
 
                     </svg>
