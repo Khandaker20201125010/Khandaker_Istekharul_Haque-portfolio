@@ -30,15 +30,9 @@ const BlogCards = ({ blog }: { blog: Blog }) => {
         });
     };
 
-    const calculateReadTime = (content: string) => {
-        const wordsPerMinute = 200;
-        const words = content.split(/\s+/).length;
-        const minutes = Math.ceil(words / wordsPerMinute);
-        return `${minutes} min read`;
-    };
-
     return (
-        <div className="group cursor-pointer transform transition-all duration-500 hover:scale-[1.02]">
+        <div data-aos="flip-left"
+            data-aos-duration="1000" className="group cursor-pointer transform transition-all duration-500 hover:scale-[1.02]">
             {/* Main Card */}
             <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-slate-900/80 to-slate-950/90 border border-slate-800/50 hover:border-slate-700/80 transition-all duration-500 shadow-xl hover:shadow-2xl hover:shadow-blue-500/10">
 
@@ -153,7 +147,7 @@ const BlogCards = ({ blog }: { blog: Blog }) => {
                     <Button
                         variant="gradient"
                         className="w-full"
-                        onClick={() => setOpenModal(true)} 
+                        onClick={() => setOpenModal(true)}
                     >
                         <div className="flex items-center justify-center gap-2">
                             <span>Read Article</span>

@@ -37,7 +37,7 @@ const services = [
 const ServicesSection = () => {
     return (
         <div className="">
-          
+
             <div className="relative container mx-auto my-20 flex flex-col  gap-10 px-4">
 
                 <div className="">
@@ -47,13 +47,13 @@ const ServicesSection = () => {
                         The services I offer
                     </h1>
                 </div>
-                      <div className="absolute h-[350px] w-[400px] max-sm:w-[90%] rounded-full opacity-50 blur-[180px] dark:bg-blue-700"></div>
-                <div className="grid gap-2 md:grid-cols-2 lg:grid-cols-3">
-                    
+                <div className="absolute h-[350px] w-[400px] max-sm:w-[90%] rounded-full opacity-50 blur-[180px] dark:bg-blue-700"></div>
+                <div  className="grid gap-2 md:grid-cols-2 lg:grid-cols-3">
+
                     {services.map((service, idx) => (
-                        <GlowCard key={idx} glowColor={service.glowColor} size="md">
-                            <div className="flex flex-col gap-3">
-                                
+                        <GlowCard  key={idx} glowColor={service.glowColor} size="md" >
+                            <div  className="flex flex-col gap-3">
+
                                 <div className="flex items-center gap-3">
                                     {service.icon}
                                     <h3 className="text-xl font-bold text-white">{service.title}</h3>

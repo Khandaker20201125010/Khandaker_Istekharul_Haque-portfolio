@@ -25,7 +25,8 @@ const MySkills = () => {
     return (
         <section className="relative container mx-auto my-20 px-4 flex flex-col lg:flex-row gap-10">
             {/* Left Side */}
-            <div className="relative flex-1 flex flex-col justify-center">
+            <div data-aos="fade-up"
+                data-aos-duration="1000" className="relative flex-1 flex flex-col justify-center">
 
                 <div className="relative">
 
@@ -49,7 +50,8 @@ const MySkills = () => {
             <div className="relative flex-1 flex flex-col gap-4">
 
                 {skills.map((skill, index) => (
-                    <div
+                    <div data-aos="flip-right"
+                            data-aos-duration="1000"
                         key={index}
                         className=" bg-gradient-to-br from-blue-950 via-black to-cyan-900 p-10 rounded-lg shadow-md"
                     >

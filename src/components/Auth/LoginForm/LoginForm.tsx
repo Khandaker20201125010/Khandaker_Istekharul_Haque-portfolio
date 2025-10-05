@@ -8,6 +8,10 @@ import { useRouter } from 'next/navigation';
 import { AiOutlineUser, AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai';
 import { FcGoogle } from 'react-icons/fc';
 import { signIn } from "next-auth/react";
+import { Button } from '@/components/ui/button';
+import toast, { Toaster } from 'react-hot-toast';
+import Link from 'next/link';
+import LightRays from '@/components/LightRays';
 type LoginFormInputs = {
   email: string;
   password: string;
@@ -21,38 +25,71 @@ export default function LoginForm() {
   const [error, setError] = useState('');
 
 
-const onSubmit: SubmitHandler<LoginFormInputs> = async (data) => {
-  setLoading(true);
-  setError("");
-  try {
-    const res = await signIn("credentials", {
-      email: data.email,
-      password: data.password,
-      redirect: false,
-    });
+  const onSubmit: SubmitHandler<LoginFormInputs> = async (data) => {
+    setLoading(true);
+    setError("");
 
-    if (res?.error) {
-      setError(res.error);
-    } else {
-      router.push("/");
+    try {
+      const res = await signIn("credentials", {
+        email: data.email,
+        password: data.password,
+        redirect: false,
+      });
+
+      if (res?.error) {
+        setError(res.error);
+        toast.error(res.error || "Invalid credentials");
+      } else {
+        toast.success("Logged in successfully!");
+        router.push("/");
+      }
+    } catch (err: any) {
+      const message = err.message || "Something went wrong";
+      setError(message);
+      toast.error(message);
+    } finally {
+      setLoading(false);
     }
-  } catch (err: any) {
-    setError(err.message || "Something went wrong");
-  } finally {
-    setLoading(false);
-  }
-};
-  
+  };
 
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-50 dark:bg-black px-4">
+    <div className="relative flex items-center justify-center min-h-screen">
+      <Toaster position="bottom-right" />
+      <div className="absolute inset-0 -z-10 pointer-events-none ">
+        <LightRays
+          raysOrigin="top-right"
+          raysColor="#1E90FF"
+          raysSpeed={1.5}
+          lightSpread={0.8}
+          rayLength={5.2}
+          followMouse={true}
+          mouseInfluence={0.1}
+          noiseAmount={0.1}
+          distortion={0.05}
+          className="w-full h-full"
+        />
+      </div>
+      <div className="absolute inset-0 -z-10 pointer-events-none ">
+        <LightRays
+          raysOrigin="bottom-left"
+          raysColor="#1E90FF"
+          raysSpeed={1.5}
+          lightSpread={0.8}
+          rayLength={5.2}
+          followMouse={true}
+          mouseInfluence={0.1}
+          noiseAmount={0.1}
+          distortion={0.05}
+          className="w-full h-full"
+        />
+      </div>
       <div className="w-full max-w-sm p-6 space-y-6 bg-white dark:bg-black rounded-lg border border-zinc-200 dark:border-zinc-800 shadow-lg">
 
         {/* Header */}
         <div className="text-center space-y-3">
           <div className="inline-flex p-2 bg-zinc-100 dark:bg-zinc-900 rounded-md border border-zinc-200 dark:border-zinc-800 justify-center">
-            <AiOutlineUser size={24} className="text-zinc-600 dark:text-zinc-400"/>
+            <AiOutlineUser size={24} className="text-zinc-600 dark:text-zinc-400" />
           </div>
           <h1 className="text-2xl font-semibold tracking-tight text-zinc-900 dark:text-white">Welcome back</h1>
           <p className="text-sm text-zinc-600 dark:text-zinc-400 mt-1">Enter your credentials to sign in</p>
@@ -60,13 +97,13 @@ const onSubmit: SubmitHandler<LoginFormInputs> = async (data) => {
 
         {/* Social login */}
         <div className="w-full">
-          <button  onClick={() =>
-              signIn("google", {
-                callbackUrl: "/dashboard",
-              })
-            } className="flex items-center justify-center h-9 px-3  w-full rounded-md border border-zinc-200  cursor-pointer dark:border-zinc-800 bg-white dark:bg-black hover:bg-zinc-50 dark:hover:bg-zinc-900 transition-colors">
+          <Button variant="gradient" onClick={() =>
+            signIn("google", {
+              callbackUrl: "/",
+            })
+          } className="flex items-center justify-center h-9 px-3  w-full ">
             <FcGoogle size={20} />
-          </button>
+          </Button>
         </div>
 
         {/* OR Divider */}
@@ -104,7 +141,7 @@ const onSubmit: SubmitHandler<LoginFormInputs> = async (data) => {
             />
             <button
               type="button"
-              className="absolute right-3 top-1/2 -translate-y-1/2"
+              className="absolute right-3 top-10 -translate-y-1/2"
               onClick={() => setShowPassword(!showPassword)}
             >
               {showPassword ? <AiOutlineEyeInvisible size={20} /> : <AiOutlineEye size={20} />}
@@ -112,21 +149,22 @@ const onSubmit: SubmitHandler<LoginFormInputs> = async (data) => {
             {errors.password && <p className="text-red-500 text-xs">{errors.password.message}</p>}
           </div>
 
-          <button
+          <Button
+            variant="gradient"
             type="submit"
             disabled={loading}
-            className="w-full h-9 px-4 py-2 rounded-md bg-zinc-900 text-white hover:bg-zinc-800 disabled:opacity-50"
+            className="w-full h-9 px-4 py-2 rounded-md  text-white  disabled:opacity-50"
           >
             {loading ? 'Signing in...' : 'Sign In'}
-          </button>
+          </Button>
         </form>
 
         {/* Footer */}
         <div className="text-center space-y-2">
           <p className="text-sm text-zinc-600 dark:text-zinc-400">
-            Don't have an account? <a href="#" className="font-medium text-zinc-900 dark:text-zinc-50 underline">Sign up</a>
+            Don't have an account? <Link href="signup" className="font-medium text-zinc-900 dark:text-zinc-50 underline">Sign up</Link>
           </p>
-          <a href="#" className="text-sm font-medium text-zinc-900 dark:text-zinc-50 underline">Forgot your password?</a>
+
         </div>
       </div>
     </div>

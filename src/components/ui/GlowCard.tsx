@@ -155,7 +155,8 @@ const GlowCard: React.FC<GlowCardProps> = ({
     return (
         <>
             <style dangerouslySetInnerHTML={{ __html: beforeAfterStyles }} />
-            <div
+            <div data-aos="flip-left"
+                data-aos-duration="1000"
                 ref={cardRef}
                 data-glow
                 style={getInlineStyles()}
@@ -175,9 +176,9 @@ const GlowCard: React.FC<GlowCardProps> = ({
             >
                 <div ref={innerRef} data-glow></div>
                 <div className="flex flex-col gap-2">
-                    
+
                     <h3 className="text-xl font-bold text-blue-400">Service Title</h3>
-                  
+
                 </div>
                 {children}
             </div>

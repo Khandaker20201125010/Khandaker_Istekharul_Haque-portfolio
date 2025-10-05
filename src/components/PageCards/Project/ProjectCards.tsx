@@ -38,7 +38,8 @@ const ProjectCards = ({ project }: { project: Project }) => {
 `}</style>
 
 
-            <div className="w-full ">
+            <div data-aos="flip-right"
+                            data-aos-duration="1000" className="w-full ">
                 {/* Animated Border Wrapper */}
                 <div className="animate-border [background:linear-gradient(45deg,#0a0a0a,theme(colors.slate.900)_50%,#0f172a)_padding-box,conic-gradient(from_var(--border-angle),theme(colors.slate.600/.48)_80%,theme(colors.blue.500)_86%,theme(colors.cyan.400)_90%,theme(colors.blue.500)_94%,theme(colors.slate.600/.48))_border-box]  border border-transparent ">
 

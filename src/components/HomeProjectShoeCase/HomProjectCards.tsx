@@ -26,7 +26,7 @@ const HomProjectCards: React.FC<{ project: Project }> = ({ project }) => {
   const liveUrl = project.liveUrl ?? project.liveLink ?? undefined;
 
   return (
-    <motion.div
+    <motion.div 
       whileHover={{ scale: 1.03 }}
       transition={{ type: "spring", stiffness: 200, damping: 20 }}
       className="relative flex flex-col p-5 rounded-2xl bg-white/10 dark:bg-gray-900/50 

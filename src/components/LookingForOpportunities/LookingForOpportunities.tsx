@@ -240,7 +240,8 @@ export default function LookingForOpportunities() {
                 </div>
 
                 {/* Text */}
-                <div className="relative z-30 max-w-3xl mx-auto text-center mt-6">
+                <div data-aos="fade-up"
+                            data-aos-duration="1000" className="relative z-30 max-w-3xl mx-auto text-center mt-6">
                     <h2 className="text-4xl md:text-5xl font-bold mb-4">
                         Looking to Join a Team
                     </h2>

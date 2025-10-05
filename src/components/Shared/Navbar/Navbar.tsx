@@ -13,11 +13,13 @@ import {
   Code2,
   LayoutDashboard,
 } from "lucide-react";
-
+import Avatar from "react-avatar";
 
 import Image from "next/image";
 import Link from "next/link";
-import { useSession } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
+import { createPortal } from "react-dom";
+import { Button } from "@/components/ui/button";
 
 interface NavItem {
   icon: React.ReactNode;
@@ -27,88 +29,8 @@ interface NavItem {
   iconColor: string;
 }
 
-const navItems: NavItem[] = [
-  {
-    icon: <Home className="h-5 w-5" />,
-    label: "Home",
-    path: "/", // hrefs to <Route path="/" element={<Home />} />
-    gradient:
-      "radial-gradient(circle, rgba(59,130,246,0.15) 0%, rgba(37,99,235,0.06) 50%, rgba(29,78,216,0) 100%)",
-    iconColor: "group-hover:text-blue-500 dark:group-hover:text-blue-400",
-  },
-  {
-    icon: <Code2 className="h-5 w-5" />,
-    label: "Projects",
-    path: "/projects",
-    gradient:
-      "radial-gradient(circle, rgba(249,115,22,0.15) 0%, rgba(234,88,12,0.06) 50%, rgba(194,65,12,0) 100%)",
-    iconColor: "group-hover:text-orange-500 dark:group-hover:text-orange-400",
-  },
-  {
-    icon: <Settings className="h-5 w-5" />,
-    label: "About",
-    path: "/about",
-    gradient:
-      "radial-gradient(circle, rgba(34,197,94,0.15) 0%, rgba(22,163,74,0.06) 50%, rgba(21,128,61,0) 100%)",
-    iconColor: "group-hover:text-green-500 dark:group-hover:text-green-400",
-  },
-  {
-    icon: <Settings className="h-5 w-5" />,
-    label: "Blogs",
-    path: "/blogs",
-    gradient: "radial-gradient(circle, rgba(168,85,247,0.15) 0%, rgba(147,51,234,0.06) 50%, rgba(126,34,206,0) 100%)",
-    iconColor: "group-hover:text-purple-500 dark:group-hover:text-purple-400",
-  },
-  {
 
-    icon: <LayoutDashboard className="h-5 w-5" />,
-    label: "Dashboard",
-    path: "/dashboard",
-    gradient:
-      "radial-gradient(circle, rgba(239,68,68,0.15) 0%, rgba(220,38,38,0.06) 50%, rgba(185,28,28,0) 100%)",
-    iconColor: "group-hover:text-red-500 dark:group-hover:text-red-400",
-  },
 
-];
-
-// const dashBoardItems = [
-//   {
-//     icon: <User className="h-5 w-5" />,
-//     label: 'Dashboard',
-//     path: '/admin',
-//     role: role.admin,
-//     gradient:
-//       'radial-gradient(circle, rgba(59,130,246,0.15) 0%, rgba(37,99,235,0.06) 50%, rgba(29,78,216,0) 100%)',
-//     iconColor: 'group-hover:text-blue-500 dark:group-hover:text-blue-400',
-//   },
-//   {
-//     icon: <User className="h-5 w-5" />,
-//     label: 'Dashboard',
-//     path: '/admin',
-//     role: role.superAdmin,
-//     gradient:
-//       'radial-gradient(circle, rgba(59,130,246,0.15) 0%, rgba(37,99,235,0.06) 50%, rgba(29,78,216,0) 100%)',
-//     iconColor: 'group-hover:text-blue-500 dark:group-hover:text-blue-400',
-//   },
-//   {
-//     icon: <User className="h-5 w-5" />,
-//     label: 'Dashboard',
-//     path: '/user',
-//     role: role.user,
-//     gradient:
-//       'radial-gradient(circle, rgba(59,130,246,0.15) 0%, rgba(37,99,235,0.06) 50%, rgba(29,78,216,0) 100%)',
-//     iconColor: 'group-hover:text-blue-500 dark:group-hover:text-blue-400',
-//   },
-//   {
-//     icon: <User className="h-5 w-5" />,
-//     label: 'Dashboard',
-//     path: '/agent',
-//     role: role.agent,
-//     gradient:
-//       'radial-gradient(circle, rgba(59,130,246,0.15) 0%, rgba(37,99,235,0.06) 50%, rgba(29,78,216,0) 100%)',
-//     iconColor: 'group-hover:text-blue-500 dark:group-hover:text-blue-400',
-//   },
-// ];
 
 // Animation Variants
 const itemVariants: Variants = {
@@ -152,8 +74,57 @@ function NavBar(): React.JSX.Element {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [open, setOpen] = useState(false);
- const { data: session } = useSession();
- console.log(session);
+  const { data: session } = useSession() ?? {};
+  const userRole = session?.user?.role;
+
+
+  const navItems: NavItem[] = [
+  {
+    icon: <Home className="h-5 w-5" />,
+    label: "Home",
+    path: "/",
+    gradient:
+      "radial-gradient(circle, rgba(59,130,246,0.15) 0%, rgba(37,99,235,0.06) 50%, rgba(29,78,216,0) 100%)",
+    iconColor: "group-hover:text-blue-500 dark:group-hover:text-blue-400",
+  },
+  {
+    icon: <Code2 className="h-5 w-5" />,
+    label: "Projects",
+    path: "/projects",
+    gradient:
+      "radial-gradient(circle, rgba(249,115,22,0.15) 0%, rgba(234,88,12,0.06) 50%, rgba(194,65,12,0) 100%)",
+    iconColor: "group-hover:text-orange-500 dark:group-hover:text-orange-400",
+  },
+  {
+    icon: <Settings className="h-5 w-5" />,
+    label: "About",
+    path: "/about",
+    gradient:
+      "radial-gradient(circle, rgba(34,197,94,0.15) 0%, rgba(22,163,74,0.06) 50%, rgba(21,128,61,0) 100%)",
+    iconColor: "group-hover:text-green-500 dark:group-hover:text-green-400",
+  },
+  {
+    icon: <Settings className="h-5 w-5" />,
+    label: "Blogs",
+    path: "/blogs",
+    gradient:
+      "radial-gradient(circle, rgba(168,85,247,0.15) 0%, rgba(147,51,234,0.06) 50%, rgba(126,34,206,0) 100%)",
+    iconColor: "group-hover:text-purple-500 dark:group-hover:text-purple-400",
+  },
+];
+
+// 👇 Add Dashboard only if role === "OWNER"
+if (userRole === "OWNER") {
+  navItems.push({
+    icon: <LayoutDashboard className="h-5 w-5" />,
+    label: "Dashboard",
+    path: "/dashboard",
+    gradient:
+      "radial-gradient(circle, rgba(239,68,68,0.15) 0%, rgba(220,38,38,0.06) 50%, rgba(185,28,28,0) 100%)",
+    iconColor: "group-hover:text-red-500 dark:group-hover:text-red-400",
+  });
+}
+
 
   useEffect(() => {
     const handleScroll = () => {
@@ -171,8 +142,8 @@ function NavBar(): React.JSX.Element {
   return (
     <motion.nav
       className={`sticky top-0 z-50 w-full overflow-hidden border-gray-200/60 p-3 backdrop-blur-lg transition-colors duration-300 ${isScrolled
-          ? "bg-black dark:bg-black/90"
-          : "bg-transparent dark:bg-transparent"
+        ? "bg-black dark:bg-black/90"
+        : "bg-transparent dark:bg-transparent"
         }`}
       initial="initial"
       whileHover="hover"
@@ -263,25 +234,24 @@ function NavBar(): React.JSX.Element {
           {/* Register Button */}
 
 
-          {/* <li className="relative overflow-visible">
-            {data?.data?.email ? (
+          <li className="relative overflow-visible">
+            {session ? (
               <>
-               
+                {/* Avatar button → opens dropdown */}
                 <button
-                  onClick={() => setOpen(!open)}
+                  onClick={() => setOpen(!open)}   // 👈 toggle menu
                   className="rounded-full border-2 border-purple-600 transition-transform duration-300 hover:scale-110"
                 >
                   <Avatar
-                    name={data?.data?.name || data?.data?.email}
-                    src={data?.data?.picture}
-                    round={true}
-                    size="40"
+                    name={session.user.name || session.user.email || "U"}
+                    src={session.user.image || ""}
+                    round
+                    size="30"
                     textSizeRatio={2}
-                    className=""
                   />
                 </button>
 
-               
+                {/* Dropdown */}
                 {open &&
                   createPortal(
                     <motion.div
@@ -295,25 +265,22 @@ function NavBar(): React.JSX.Element {
                       }}
                       className="fixed top-16 right-6 z-[9999] w-48 rounded-md border border-purple-500 bg-white shadow-xl dark:bg-gray-900"
                     >
-                    
+                      {/* User info */}
                       <div className="border-b border-gray-100/50 px-4 py-3 dark:border-gray-800/50">
                         <p className="truncate text-sm font-medium text-gray-800 dark:text-white">
-                          {data?.data?.name || "User"}
+                          {session.user?.name || "User"}
                         </p>
                         <p className="truncate text-xs text-gray-500 dark:text-gray-400">
-                          {data?.data?.email}
+                          {session.user?.email}
                         </p>
                       </div>
 
-                   
-               
-
-                    
+                      {/* Logout */}
                       <div className="border-t border-gray-100/50 dark:border-gray-800/50">
                         <button
                           onClick={() => {
-                            setOpen(false);
-                            handleLogout();
+                            setOpen(false); // 👈 close menu
+                            signOut();      // 👈 logout
                           }}
                           className="flex w-full items-center px-4 py-3 text-sm text-red-600 transition-colors hover:bg-red-50 hover:text-red-700 dark:text-red-400 dark:hover:bg-red-900/20 dark:hover:text-red-300"
                         >
@@ -339,13 +306,11 @@ function NavBar(): React.JSX.Element {
               </>
             ) : (
               <Link href="/login" className="relative z-10">
-                <button className="group relative z-10 cursor-pointer overflow-hidden rounded-full border-2 border-purple-500 bg-gradient-to-r from-blue-700 via-purple-500 to-pink-500 px-6 py-1.5 font-sans text-xs font-bold text-white transition-all duration-300 hover:shadow-lg hover:shadow-purple-500/30 sm:px-8 sm:py-2 sm:text-sm md:px-10 md:py-2.5 md:text-base">
-                  <span className="absolute inset-0 z-0 -translate-x-full bg-gradient-to-r from-blue-950 via-purple-950 to-blue-950 transition-transform duration-300 ease-in-out group-hover:translate-x-0"></span>
-                  <span className="relative">Login</span>
-                </button>
+                <Button variant="gradient" className="w-20">Login</Button>
               </Link>
             )}
-          </li> */}
+          </li>
+
         </ul>
 
         {/* Mobile controls */}
@@ -383,26 +348,11 @@ function NavBar(): React.JSX.Element {
         ))}
 
         {/* Dashboard item (based on role) */}
-        {/* {data?.data?.role &&
-          dashBoardItems
-            .filter((item) => item.role === data?.data?.role)
-            .map((item) => (
-              <Link
-                key={item.label}
-                href={item.path}
-                className="w-full rounded-xl px-4 py-2 text-center text-sm font-semibold text-gray-500 transition-colors hover:bg-purple-100 sm:text-base dark:text-gray-300 dark:hover:bg-purple-900/30"
-                onClick={() => setIsOpen(false)}
-              >
-                {item.label}
-              </Link>
-            ))}
-        {data?.data?.email ? (
+
+        {session ? (
           // Logout
           <button
-            onClick={() => {
-              setIsOpen(false);
-              handleLogout();
-            }}
+            onClick={() => signOut()}
             className="w-full rounded-xl px-4 py-2 text-center text-sm font-semibold text-red-600 transition-colors hover:bg-red-100 sm:text-base dark:text-red-400 dark:hover:bg-red-900/30"
           >
             Logout
@@ -416,7 +366,7 @@ function NavBar(): React.JSX.Element {
           >
             Login
           </Link>
-        )} */}
+        )}
       </motion.ul>
     </motion.nav>
   );

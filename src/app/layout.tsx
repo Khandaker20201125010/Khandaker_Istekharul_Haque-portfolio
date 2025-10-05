@@ -3,11 +3,14 @@ import type { Metadata } from "next";
 import { Inter, Poppins, Fira_Code } from "next/font/google"; // ✅ Import fonts
 import "./globals.css";
 import ClientLayout from "@/components/ClientLayout";
+import ScrollAnimationWrapper from "@/components/ui/ScrollAnimationWrapper";
+import SplashCursor from "@/components/SplashCursor";
+import RouteLoaderWrapper from "@/components/Shared/RouteLoaderWrapper/RouteLoaderWrapper";
 
 const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"], 
+  weight: ["400", "500", "600", "700"],
 });
 
 const poppins = Poppins({
@@ -30,10 +33,19 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className="dark">
-      <body className={`${inter.variable} ${poppins.variable} ${fira.variable} antialiased max-w-screen-2xl mx-auto`}>
-        <ClientLayout>{children}</ClientLayout>
+    <html lang="en" className="dark" suppressHydrationWarning>
+      <body
+        suppressHydrationWarning
+        className={`${inter.variable} ${poppins.variable} ${fira.variable} antialiased`}
+      >
+        <SplashCursor />
+        <RouteLoaderWrapper>
+          <ClientLayout>
+            <ScrollAnimationWrapper>{children}</ScrollAnimationWrapper>
+          </ClientLayout>
+        </RouteLoaderWrapper>
       </body>
     </html>
   );
 }
+

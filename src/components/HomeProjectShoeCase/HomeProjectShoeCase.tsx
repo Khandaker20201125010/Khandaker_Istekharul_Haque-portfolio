@@ -99,7 +99,8 @@ const HomeProjectShoeCase: React.FC = () => {
 
                 <div className="container mx-auto grid md:grid-cols-3 gap-6 mt-16">
                     {projects.map((project) => (
-                        <div
+                        <div data-aos="flip-right"
+                            data-aos-duration="1000"
                             key={project._id ?? project.id ?? project.slug ?? Math.random()}
                             className="relative"
                         >

@@ -1,4 +1,5 @@
 import Banner from "@/components/Bannner/Banner";
+import ContactForm from "@/components/Contact/ContactForm";
 import HomeProjectShoeCase from "@/components/HomeProjectShoeCase/HomeProjectShoeCase";
 import LookingForOpportunities from "@/components/LookingForOpportunities/LookingForOpportunities";
 import MySkills from "@/components/MySkills/MySkills";
@@ -15,6 +16,7 @@ export default function Home() {
       <MySkills />
       <Logomarquee />
       <HomeProjectShoeCase />
+      <ContactForm />
     </div>
   );
 }

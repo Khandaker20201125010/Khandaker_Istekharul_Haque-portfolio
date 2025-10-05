@@ -6,6 +6,15 @@ import {
   SidebarProvider,
   SidebarTrigger,
 } from "@/components/ui/sidebar"
+import { Metadata } from "next";
+import OwnerGuard from "../OwnerGuard/OwnerGuard";
+
+export const metadata: Metadata = {
+  title: "Khandaker Istekharul Haque Dashboard",
+  description:
+    "Dashboard for managing blogs, projects, and other content - Khandaker Istekharul Haque.",
+};
+
 
 export default function DashboardLayout({ children }: { children: React.ReactNode }){
   return (
@@ -27,7 +36,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
        
         </header>
         <div className="flex flex-1 flex-col gap-4 p-4 pt-0">
-           <main className="flex-1 ">{children}</main>
+           <main className="flex-1 ">   <OwnerGuard>{children}</OwnerGuard></main>
         </div>
       </SidebarInset>
     </SidebarProvider>
