@@ -38,12 +38,15 @@ const MySkills = () => {
                         </h1>
                     </div>
                 </div>
-                <Button variant="gradient" className="mt-20 w-max max-sm:w-full">
-                    <div className="flex items-center gap-2 text-2xl">
-                        <span>Get Resume</span>
-                        <Download className="w-8 h-8" />
-                    </div>
-                </Button>
+                <a href="/resume.pdf" download>
+                    <Button variant="gradient" className="mt-20 w-max max-sm:w-full">
+                        <div className="flex items-center gap-2 text-2xl">
+                            <span>Get Resume</span>
+                            <Download className="w-8 h-8" />
+                        </div>
+                    </Button>
+                </a>
+
             </div>
 
             {/* Right Side - Skill Bars */}
@@ -51,7 +54,7 @@ const MySkills = () => {
 
                 {skills.map((skill, index) => (
                     <div data-aos="flip-right"
-                            data-aos-duration="1000"
+                        data-aos-duration="1000"
                         key={index}
                         className=" bg-gradient-to-br from-blue-950 via-black to-cyan-900 p-10 rounded-lg shadow-md"
                     >

@@ -48,8 +48,8 @@ export default function Banner() {
       </div>
 
       {/* Left Side */}
-      <div  data-aos="fade-up"      
-          data-aos-duration="1000" className="w-full md:w-1/2 max-w-xl text-center md:text-left z-10 mt-16 md:mt-0">
+      <div data-aos="fade-up"
+        data-aos-duration="1000" className="w-full md:w-1/2 max-w-xl text-center md:text-left z-10 mt-16 md:mt-0">
         <p className="uppercase tracking-wide text-gray-400 font-poppins">Hello</p>
         <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mt-2 font-poppins">
           I’m <span className="text-white">Khandaker Istekharul Haque</span>
@@ -73,11 +73,21 @@ export default function Banner() {
           I specialize in creating responsive and dynamic web applications that deliver exceptional user experiences.
         </p>
 
-        <Link href="/projects">
-          <Button className="mt-8" variant="gradient" size="lg">
-            View Projects →
-          </Button>
-        </Link>
+        <div className="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-6 justify-center md:justify-start">
+          <div>
+            <Link href="/projects">
+              <Button className="mt-8" variant="gradient" size="lg">
+                View Projects →
+              </Button>
+            </Link>
+          </div>
+          <a href="/resume.pdf" download>
+            <Button className="mt-8" variant="gradient" size="lg">
+              Get Resume →
+            </Button>
+          </a>
+
+        </div>
       </div>
 
       {/* Right Side - Image */}
@@ -87,7 +97,7 @@ export default function Banner() {
         <Image
           src={profile}
           alt="Web Developer"
-          data-aos="zoom-in"      
+          data-aos="zoom-in"
           data-aos-duration="1000"
           width={400}
           height={500}
@@ -141,7 +151,7 @@ export default function Banner() {
         >
           WEB DEVELOPER
         </motion.h2>
-      </div>
+      </div >
     </section>
   );
 }

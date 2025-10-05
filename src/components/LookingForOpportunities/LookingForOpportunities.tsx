@@ -6,6 +6,7 @@ import facebook from "../../../public/images/facebook.png";
 import twitter from "../../../public/images/twitter.png";
 import linkedin from "../../../public/images/linkedin.png";
 import github from "../../../public/images/github.png";
+import { Button } from "../ui/button";
 export default function LookingForOpportunities() {
     return (
         <section className="relative text-white py-20 px-6 md:px-20 rounded-lg my-16 overflow-hidden ">
@@ -251,6 +252,10 @@ export default function LookingForOpportunities() {
                         teammates, and help create accessible, user-friendly designs and
                         applications.
                     </p>
+                    <Button variant="gradient" size="lg">
+
+                        Contact Me
+                    </Button>
                 </div>
             </div>
 

@@ -46,7 +46,7 @@ const HomProjectCards: React.FC<{ project: Project }> = ({ project }) => {
       />
 
       {/* Title */}
-      <div className="flex items-center justify-between mb-2">
+      <div className="flex max-sm:flex-col max-sm:items-start items-center justify-between mb-2">
         <h3 className="text-2xl font-bold mb-2 text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400">
           {project.title}
         </h3>
