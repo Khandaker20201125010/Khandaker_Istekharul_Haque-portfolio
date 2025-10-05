@@ -3,7 +3,7 @@
 import Image from "next/image";
 import profile from "../../../public/images/profile.png";
 import { ScrollTimeline } from "../lightswind/ScrollTimeline";
-import { Github, GithubIcon, LinkedinIcon, Phone } from "lucide-react";
+import {  GithubIcon, LinkedinIcon, Phone } from "lucide-react";
 import Link from "next/link";
 
 const AboutIntro = () => {

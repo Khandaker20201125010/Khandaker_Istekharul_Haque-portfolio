@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
-import { Calendar, Clock, Eye, ArrowUpRight, BookOpen, Tag } from 'lucide-react';
+import { Calendar,  Eye, ArrowUpRight, BookOpen, Tag } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import Link from 'next/link';
 import BlogModal from '@/components/Modals/BlogModal';
 
 interface Blog {

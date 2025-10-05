@@ -8,7 +8,6 @@ import {
   Settings,
   Menu,
   X,
-  Contact,
 
   Code2,
   LayoutDashboard,

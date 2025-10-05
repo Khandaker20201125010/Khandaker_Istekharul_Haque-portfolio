@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { type ClassValue } from "clsx";
 export declare function cn(...inputs: ClassValue[]): string;
 export declare function formatCurrency(amount: number, currency?: string, options?: Intl.NumberFormatOptions): string;

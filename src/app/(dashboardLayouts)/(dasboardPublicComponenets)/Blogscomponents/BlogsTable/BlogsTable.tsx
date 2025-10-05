@@ -77,9 +77,7 @@ const BlogsTable = () => {
   };
 
   // Update blog (redirect to edit page)
-  const handleUpdate = (slug: string) => {
-    window.location.href = `/dashboard/blogs/edit/${slug}`;
-  };
+
 
   return (
     <div className="p-6 bg-gray-900 rounded-xl shadow-lg border border-gray-800">

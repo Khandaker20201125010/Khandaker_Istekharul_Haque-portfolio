@@ -58,7 +58,7 @@ export const ScrollTimeline = ({
   animationOrder = "sequential",
   cardAlignment = "alternating",
   lineColor = "bg-primary/30",
-  activeColor = "bg-primary",
+ 
   progressIndicator = true,
   cardVariant = "default",
   cardEffect = "none",
@@ -68,8 +68,6 @@ export const ScrollTimeline = ({
   dateFormat = "badge",
   revealAnimation = "fade",
   className = "",
-  connectorStyle = "line",
-  perspective = false,
   darkMode = false,
 }: ScrollTimelineProps) => {
   const scrollRef = useRef<HTMLDivElement>(null);

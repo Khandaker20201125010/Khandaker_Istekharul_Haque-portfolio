@@ -1,5 +1,7 @@
 # My-Portfolio 
 
+- Live Link - https://khandaker-istekharul-haque-portfoli.vercel.app/
+
 This is the **frontend** for my personal portfolio website, built using **Next.js**, **TypeScript**, and **Tailwind CSS**. It showcases my projects, blog posts, and personal information, while providing a private dashboard for the portfolio owner to manage content.
 
 ---

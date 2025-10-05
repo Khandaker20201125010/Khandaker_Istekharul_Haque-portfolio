@@ -28,7 +28,7 @@ const data: { navMain: NavItem[] } = {
       items: [{ title: "Projects Management", url: "/dashboard/Manage-Projects" },
       { title: "Create Projects", url: "/dashboard/create-projects" },],
     },
-    { 
+    {
       title: "Blogs Overview",
       items: [{ title: "Blogs Management", url: "/dashboard/manage-blogs" },
       { title: "Create Blogs", url: "/dashboard/create-blogs" },
@@ -36,7 +36,10 @@ const data: { navMain: NavItem[] } = {
     },
     {
       title: "Dashboard Home",
-      url: "/dashboard", // ✅ direct url
+      items: [{ title: "Home", url: "/" },
+      { title: "View Project", url: "/project" },
+      { title: "View Blogs", url: "/blogs" },
+      ],
     },
   ],
 }

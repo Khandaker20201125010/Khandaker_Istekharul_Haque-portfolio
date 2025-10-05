@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
+
 "use client";
 
 import * as React from "react";
@@ -17,7 +17,8 @@ const Card = React.forwardRef<HTMLDivElement, CardProps>(
       className={cn(
         // 🎨 Base aesthetic
         "relative rounded-xl bg-gradient-to-br from-[#0d0d12] via-[#0a0a17] to-[#0b1220] text-white",
-        "shadow-md shadow-blue-900/40 backdrop-blur-md border border-blue-800/40",
+        // apply shadow and border only when bordered is true
+        bordered ? "shadow-md shadow-blue-900/40 backdrop-blur-md border border-blue-800/40" : "backdrop-blur-md",
         "transition-all duration-300",
         hoverable &&
           "hover:shadow-blue-500/50 hover:shadow-lg hover:-translate-y-1 hover:border-blue-500/60",

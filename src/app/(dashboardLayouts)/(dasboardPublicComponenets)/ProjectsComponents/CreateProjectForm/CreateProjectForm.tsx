@@ -2,7 +2,7 @@
 "use client";
 
 import { useState } from "react";
-import { toast } from "react-hot-toast";
+import { toast, Toaster } from "react-hot-toast";
 import { Button } from "@/components/ui/button";
 import SingleImageUploader from "@/components/SingleImageUploader";
 import { createProjects } from "@/actions/create";
@@ -43,6 +43,7 @@ export default function CreateProjectForm() {
             onSubmit={handleSubmit}
             className="max-w-3xl mx-auto p-8 bg-gradient-to-br from-gray-900 to-black border border-gray-800 shadow-2xl rounded-2xl space-y-8"
         >
+             <Toaster position="top-right" />
             <div className="text-center mb-8">
                 <h2 className="text-3xl font-bold bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
                     Create New Project
