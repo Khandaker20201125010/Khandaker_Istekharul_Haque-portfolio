@@ -7,6 +7,7 @@ import twitter from "../../../public/images/twitter.png";
 import linkedin from "../../../public/images/linkedin.png";
 import github from "../../../public/images/github.png";
 import { Button } from "../ui/button";
+import Link from "next/link";
 export default function LookingForOpportunities() {
     return (
         <section className="relative text-white py-20 px-6 md:px-20 rounded-lg my-16 overflow-hidden ">
@@ -242,7 +243,7 @@ export default function LookingForOpportunities() {
 
                 {/* Text */}
                 <div data-aos="fade-up"
-                            data-aos-duration="1000" className="relative z-30 max-w-3xl mx-auto text-center mt-6">
+                    data-aos-duration="1000" className="relative z-30 max-w-3xl mx-auto text-center mt-6">
                     <h2 className="text-4xl md:text-5xl font-bold mb-4">
                         Looking to Join a Team
                     </h2>
@@ -252,10 +253,12 @@ export default function LookingForOpportunities() {
                         teammates, and help create accessible, user-friendly designs and
                         applications.
                     </p>
-                    <Button variant="gradient" size="lg">
+                    <Link href="/about" className="inline-block">
+                        <Button variant="gradient" size="lg">
 
-                        Contact Me
-                    </Button>
+                            Contact Me
+                        </Button>
+                    </Link>
                 </div>
             </div>
 

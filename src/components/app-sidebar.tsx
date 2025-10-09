@@ -1,48 +1,20 @@
-import * as React from "react"
-import logo from "../../public/images/logo.png"
+import * as React from "react";
+import Image from "next/image";
+import Link from "next/link";
+import logo from "../../public/images/logo.png";
 
 import {
   Sidebar,
+  SidebarHeader,
   SidebarContent,
   SidebarGroup,
-  SidebarHeader,
   SidebarMenu,
-  SidebarMenuButton,
   SidebarMenuItem,
-  SidebarMenuSub,
-  SidebarMenuSubButton,
-  SidebarMenuSubItem,
-} from "@/components/ui/sidebar"
-import Image from "next/image"
-import Link from "next/link"
+  SidebarMenuButton,
+} from "@/components/ui/sidebar";
+import SidebarNavItems from "@/app/(dashboardLayouts)/(dasboardPublicComponenets)/SidebarNavItems/SidebarNavItems";
 
 
-
-type NavSubItem = { title: string; url: string }
-type NavItem = { title: string; url?: string; items?: NavSubItem[] }
-// This is sample data.
-const data: { navMain: NavItem[] } = {
-  navMain: [
-    {
-      title: "Project Overview",
-      items: [{ title: "Projects Management", url: "/dashboard/Manage-Projects" },
-      { title: "Create Projects", url: "/dashboard/create-projects" },],
-    },
-    {
-      title: "Blogs Overview",
-      items: [{ title: "Blogs Management", url: "/dashboard/manage-blogs" },
-      { title: "Create Blogs", url: "/dashboard/create-blogs" },
-      ],
-    },
-    {
-      title: "Dashboard Home",
-      items: [{ title: "Home", url: "/" },
-      { title: "View Project", url: "/project" },
-      { title: "View Blogs", url: "/blogs" },
-      ],
-    },
-  ],
-}
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   return (
@@ -64,32 +36,10 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
 
       <SidebarContent>
         <SidebarGroup>
-          <SidebarMenu className="gap-2">
-            {data.navMain.map((item) => (
-              <SidebarMenuItem key={item.title}>
-                {/* top-level as Link */}
-                <SidebarMenuButton asChild>
-                  <Link href={item.items?.length ? "#" : (item.url ?? "#")}>
-                    {item.title}
-                  </Link>
-                </SidebarMenuButton>
-
-                {item.items?.length ? (
-                  <SidebarMenuSub className="ml-0 border-l-0 px-1.5">
-                    {item.items.map((sub) => (
-                      <SidebarMenuSubItem key={sub.title}>
-                        <SidebarMenuSubButton asChild>
-                          <Link href={sub.url}>{sub.title}</Link>
-                        </SidebarMenuSubButton>
-                      </SidebarMenuSubItem>
-                    ))}
-                  </SidebarMenuSub>
-                ) : null}
-              </SidebarMenuItem>
-            ))}
-          </SidebarMenu>
+          {/* Render all nav items from a separate component */}
+          <SidebarNavItems />
         </SidebarGroup>
       </SidebarContent>
     </Sidebar>
-  )
+  );
 }
