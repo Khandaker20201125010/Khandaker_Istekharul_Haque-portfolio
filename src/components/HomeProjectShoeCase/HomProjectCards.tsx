@@ -29,36 +29,44 @@ const HomProjectCards: React.FC<{ project: Project }> = ({ project }) => {
     <motion.div 
       whileHover={{ scale: 1.03 }}
       transition={{ type: "spring", stiffness: 200, damping: 20 }}
-      className="relative flex flex-col p-5 rounded-2xl bg-white/10 dark:bg-gray-900/50 
-                 backdrop-blur-xl border border-white/10 shadow-lg overflow-hidden"
+      className="relative flex flex-col p-4 sm:p-5 rounded-xl sm:rounded-2xl 
+                 bg-white/10 dark:bg-gray-900/50 backdrop-blur-xl 
+                 border border-white/10 shadow-lg overflow-hidden h-full"
     >
       {/* Glow background */}
-      <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-blue-500/20 to-cyan-500/20 
+      <div className="absolute inset-0 rounded-xl sm:rounded-2xl 
+                      bg-gradient-to-r from-blue-500/20 to-cyan-500/20 
                       blur-2xl opacity-30 -z-10"></div>
 
       {/* Project Image */}
-      <Image
-        width={500}
-        height={300}
-        src={thumbnail}
-        alt={project.title}
-        className="w-full h-48 object-cover rounded-xl mb-4 shadow-md"
-      />
+      <div className="relative w-full aspect-video mb-3 sm:mb-4">
+        <Image
+          fill
+          src={thumbnail}
+          alt={project.title}
+          className="object-cover rounded-lg sm:rounded-xl shadow-md"
+          sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
+        />
+      </div>
 
       {/* Title */}
-      <div className="flex max-sm:flex-col max-sm:items-start items-center justify-between mb-2">
-        <h3 className="text-2xl font-bold mb-2 text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400">
+      <div className="flex flex-col sm:flex-row sm:items-center 
+                     justify-between mb-2 gap-2 sm:gap-0">
+        <h3 className="text-lg sm:text-xl md:text-2xl font-bold 
+                      text-transparent bg-clip-text bg-gradient-to-r 
+                      from-blue-400 to-cyan-400 line-clamp-1">
           {project.title}
         </h3>
         {liveUrl && (
-          <Link href={liveUrl} target="_blank">
+          <Link href={liveUrl} target="_blank" className="w-full sm:w-auto">
             <Button
               variant="gradient"
-              className=""
+              size="sm"
+              className="w-full sm:w-auto text-xs sm:text-sm"
             >
-              <div className="flex items-center justify-center gap-2">
-                <ExternalLink size={16} className="shrink-0" />
-                <span >Live Link</span>
+              <div className="flex items-center justify-center gap-1 sm:gap-2">
+                <ExternalLink size={14} className="sm:w-4 sm:h-4" />
+                <span>Live Link</span>
               </div>
             </Button>
           </Link>
@@ -66,36 +74,77 @@ const HomProjectCards: React.FC<{ project: Project }> = ({ project }) => {
       </div>
 
       {/* Description */}
-      <p className="text-gray-300 mb-4 line-clamp-3 text-sm leading-relaxed">
+      <p className="text-gray-300 mb-3 sm:mb-4 line-clamp-3 
+                   text-xs sm:text-sm leading-relaxed flex-grow">
         {project.description}
       </p>
 
       {/* Buttons */}
-      <div className="mt-auto flex flex-wrap gap-3">
-
-
+      <div className="mt-auto grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3">
         {project.frontendRepoUrl && (
-          <Link href={project.frontendRepoUrl} target="_blank">
-            <Button variant="gradient" className="flex items-center gap-2">
-              <div className="flex items-center justify-center gap-2">
-                <Gitlab size={16} className="shrink-0" />
-                <span>Frontend</span>
+          <Link href={project.frontendRepoUrl} target="_blank" className="w-full">
+            <Button 
+              variant="gradient" 
+              size="sm"
+              className="w-full text-xs sm:text-sm"
+            >
+              <div className="flex items-center justify-center gap-1 sm:gap-2">
+                <Gitlab size={14} className="sm:w-4 sm:h-4" />
+                <span className="truncate">Frontend</span>
               </div>
             </Button>
           </Link>
         )}
 
         {project.backendRepoUrl && (
-          <Link href={project.backendRepoUrl} target="_blank">
-            <Button variant="gradient" className="flex items-center gap-2">
-              <div className="flex items-center justify-center gap-2">
-                <Github size={16} className="shrink-0" />
-                <span>Backend</span>
+          <Link href={project.backendRepoUrl} target="_blank" className="w-full">
+            <Button 
+              variant="gradient" 
+              size="sm"
+              className="w-full text-xs sm:text-sm"
+            >
+              <div className="flex items-center justify-center gap-1 sm:gap-2">
+                <Github size={14} className="sm:w-4 sm:h-4" />
+                <span className="truncate">Backend</span>
               </div>
             </Button>
           </Link>
         )}
       </div>
+
+      {/* Alternative single row layout for very small screens */}
+      {(project.frontendRepoUrl && project.backendRepoUrl) && (
+        <div className="mt-3 sm:hidden flex gap-2">
+          {project.frontendRepoUrl && (
+            <Link href={project.frontendRepoUrl} target="_blank" className="flex-1">
+              <Button 
+                variant="outline" 
+                size="sm"
+                className="w-full text-xs"
+              >
+                <div className="flex items-center justify-center gap-1">
+                  <Gitlab size={12} />
+                  <span>Front</span>
+                </div>
+              </Button>
+            </Link>
+          )}
+          {project.backendRepoUrl && (
+            <Link href={project.backendRepoUrl} target="_blank" className="flex-1">
+              <Button 
+                variant="outline" 
+                size="sm"
+                className="w-full text-xs"
+              >
+                <div className="flex items-center justify-center gap-1">
+                  <Github size={12} />
+                  <span>Back</span>
+                </div>
+              </Button>
+            </Link>
+          )}
+        </div>
+      )}
     </motion.div>
   );
 };

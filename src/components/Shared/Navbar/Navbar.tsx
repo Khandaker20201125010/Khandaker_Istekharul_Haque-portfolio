@@ -140,7 +140,7 @@ if (userRole === "OWNER") {
 
   return (
     <motion.nav
-      className={`sticky top-0 z-50 w-full overflow-hidden border-gray-200/60 p-3 backdrop-blur-lg transition-colors duration-300 ${isScrolled
+      className={`fixed top-0 z-50 w-full overflow-hidden border-gray-200/60 p-3 backdrop-blur-lg transition-colors duration-300 ${isScrolled
         ? "bg-black dark:bg-black/90"
         : "bg-transparent dark:bg-transparent"
         }`}

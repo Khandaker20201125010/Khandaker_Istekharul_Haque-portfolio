@@ -4,6 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import React from "react";
 import logo from "../../../../public/images/logo.png";
+import footerBg from "../../../../public/images/footerBg.png";
 const GitHubIcon = ({ size = 24, className = "" }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -33,7 +34,13 @@ const LinkedInIcon = ({ size = 24, className = "" }) => (
 
 const Footer = () => {
   return (
-    <footer className="relative z-10 bg-gradient-to-r from-gray-50 to-gray-100 dark:from-gray-900 dark:to-black text-gray-900 dark:text-white py-12 px-4 font-inter border-t border-gray-200 dark:border-gray-800">
+    <footer
+      style={{
+        backgroundImage: `url(${footerBg.src})`,
+      }}
+      className="relative z-10 bg-cover bg-center bg-no-repeat bg-gradient-to-r from-gray-50/90 to-gray-100/90 dark:from-gray-900/90 dark:to-black/90 text-gray-900 dark:text-white py-12 px-4 font-inter border-t border-gray-200 dark:border-gray-800"
+    >
+      
       <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
         <div className="space-y-4">
           <div className="flex items-center space-x-2">
@@ -127,7 +134,7 @@ const Footer = () => {
       </div>
       <div className="text-center text-gray-500 dark:text-gray-400 text-sm pt-10 mt-10 border-t border-gray-200 dark:border-gray-700">
         <p>
-          &copy; {new Date().getFullYear()} Your Brand. All rights reserved.
+          &copy; {new Date().getFullYear()} Khandaker Istekharul Haque. All rights reserved.
         </p>
       </div>
     </footer>
