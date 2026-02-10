@@ -8,6 +8,8 @@ import {
   ChevronLeft,
   ChevronRight,
   Zap,
+  Grid,
+  LayoutGrid,
 } from "lucide-react";
 
 const services = [
@@ -43,7 +45,7 @@ const ServicesSection = () => {
   const [touchStartX, setTouchStartX] = useState(0);
   const [touchEndX, setTouchEndX] = useState(0);
   const [isDragging, setIsDragging] = useState(false);
-  const intervalRef = useRef<NodeJS.Timeout | null>(null); // Initialize as null
+  const intervalRef = useRef<NodeJS.Timeout | null>(null);
   const sliderRef = useRef<HTMLDivElement>(null);
 
   // Minimum swipe distance (in pixels)
@@ -190,8 +192,8 @@ const ServicesSection = () => {
           <div className="absolute bottom-1/4 right-1/4 w-96 h-96 rounded-full bg-cyan-500/5 blur-3xl"></div>
         </div>
 
-        {/* Desktop Grid - Enhanced layout */}
-        <div className="hidden md:grid gap-8 grid-cols-1 lg:grid-cols-3">
+        {/* Desktop Grid - Full 3-column layout */}
+        <div className="hidden lg:grid gap-8 grid-cols-3">
           {services.map((service, idx) => (
             <div
               key={idx}
@@ -226,17 +228,120 @@ const ServicesSection = () => {
                     <p className="text-gray-300 leading-relaxed">
                       {service.description}
                     </p>
-                    <div className="mt-4">
-                      <span className="inline-flex items-center text-sm text-cyan-400 font-medium">
-                        Learn more
-                        <ChevronRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" />
-                      </span>
-                    </div>
                   </div>
                 </div>
               </GlowCard>
             </div>
           ))}
+        </div>
+
+        {/* Tablet Layout - 2 cards side by side, 3rd card full width */}
+        <div className="hidden md:grid lg:hidden gap-6">
+          {/* First row: 2 cards side by side */}
+          <div className="grid grid-cols-2 gap-6">
+            {services.slice(0, 2).map((service, idx) => (
+              <div
+                key={idx}
+                className="group relative"
+              >
+                <GlowCard
+                  glowColor={service.glowColor}
+                  size="md"
+                  className="h-full"
+                >
+                  <div className="relative p-6">
+                    {/* Badge */}
+                    <div className="absolute -top-3 right-6">
+                      <span className="px-3 py-1 text-xs font-semibold rounded-full bg-blue-500/20 text-blue-300 border border-blue-500/30">
+                        {service.badge}
+                      </span>
+                    </div>
+                    
+                    <div className="flex flex-col gap-5">
+                      <div className="flex items-start gap-4">
+                        <div className="p-3 rounded-xl bg-gray-800/50 group-hover:bg-gray-800/80 transition-colors">
+                          {service.icon}
+                        </div>
+                        <div>
+                          <h3 className="text-xl font-bold text-white mb-2">
+                            {service.title}
+                          </h3>
+                          <div className="h-1 w-12 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full"></div>
+                        </div>
+                      </div>
+                      <p className="text-gray-300 leading-relaxed">
+                        {service.description}
+                      </p>
+                    </div>
+                  </div>
+                </GlowCard>
+              </div>
+            ))}
+          </div>
+          
+          {/* Second row: 3rd card full width */}
+          {services.length > 2 && (
+            <div className="group relative">
+              <GlowCard
+                glowColor={services[2].glowColor}
+                size="lg"
+                className="w-full"
+              >
+                <div className="relative p-6 md:p-8">
+                  {/* Tablet badge position - centered */}
+                  <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
+                    <span className="px-4 py-1.5 text-sm font-semibold rounded-full bg-blue-500/20 text-blue-300 border border-blue-500/30 flex items-center gap-2">
+                      <LayoutGrid className="w-3 h-3" />
+                      {services[2].badge}
+                    </span>
+                  </div>
+                  
+                  <div className="flex flex-col md:flex-row items-start md:items-center gap-6">
+                    {/* Icon container - larger for tablet */}
+                    <div className="p-4 rounded-2xl bg-gray-800/50 group-hover:bg-gray-800/80 transition-colors flex-shrink-0">
+                      <div className="w-12 h-12">
+                        {services[2].icon}
+                      </div>
+                    </div>
+                    
+                    <div className="flex-1">
+                      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-4">
+                        <div>
+                          <h3 className="text-2xl font-bold text-white mb-2">
+                            {services[2].title}
+                          </h3>
+                          <div className="h-1.5 w-16 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full"></div>
+                        </div>
+                        
+                        {/* Additional visual indicator for full-width card */}
+                        <div className="flex items-center gap-2 text-sm text-cyan-400">
+                          <Grid className="w-4 h-4" />
+                          <span>Full Stack Solution</span>
+                        </div>
+                      </div>
+                      
+                      <p className="text-gray-300 leading-relaxed text-lg">
+                        {services[2].description}
+                      </p>
+                      
+                      {/* Additional features or highlights for full-width card */}
+                      <div className="mt-6 flex flex-wrap gap-3">
+                        <span className="px-3 py-1 text-xs rounded-full bg-gray-800/50 text-gray-300">
+                          Frontend + Backend
+                        </span>
+                        <span className="px-3 py-1 text-xs rounded-full bg-gray-800/50 text-gray-300">
+                          Database Integration
+                        </span>
+                        <span className="px-3 py-1 text-xs rounded-full bg-gray-800/50 text-gray-300">
+                          End-to-End Development
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </GlowCard>
+            </div>
+          )}
         </div>
 
         {/* Mobile Slider with Swipe Support */}
