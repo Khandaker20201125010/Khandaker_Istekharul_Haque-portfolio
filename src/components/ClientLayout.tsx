@@ -12,7 +12,7 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
 
   return (
     <SessionProvider>
-      {!shouldHideLayout && <Navbar />}
+      
       <main className="relative min-h-screen max-w-screen-2xl mx-auto">
         <div className="fixed inset-0 z-0 bg-gridSq">
           <div className="shine-line"></div>
@@ -21,9 +21,11 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
           <div className="shine-line"></div>
           <div className="shine-line"></div>
         </div>
+        {!shouldHideLayout && <Navbar />}
         <div className="relative z-10">{children}</div>
+        {!shouldHideLayout && <Footer />}
       </main>
-      {!shouldHideLayout && <Footer />}
+      
     </SessionProvider>
   );
 }

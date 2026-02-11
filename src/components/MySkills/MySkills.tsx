@@ -32,9 +32,16 @@ const MySkills = () => {
 
                     <div className="absolute h-[250px] w-[400px] max-sm:w-[90%] rounded-full opacity-50 blur-[180px] dark:bg-blue-700"></div>
                     <div className="text-start max-sm:text-center">
-                        <h2 className="text-gray-400 uppercase tracking-wide mb-2">My Skills</h2>
-                        <h1 className="text-3xl md:text-6xl font-bold font-inter text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-cyan-500">
-                            My Skills <br /> Field Here ...
+                        <div className="flex items-center gap-3 mb-4">
+                            <div className="h-px w-12 bg-gradient-to-r from-blue-500 to-cyan-500"></div>
+                            <span className="text-blue-400 font-semibold tracking-wider uppercase text-sm">
+                                My Skills
+                            </span>
+                            <div className="h-px flex-1 bg-gradient-to-r from-cyan-500 to-transparent"></div>
+                        </div>
+                        <h2 className="text-gray-400 uppercase tracking-wide mb-2"></h2>
+                        <h1 className="text-3xl md:text-6xl font-bold font-inter text-transparent bg-clip-text text-white">
+                            My Skills <br /> <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-cyan-400">Field Here ...</span>
                         </h1>
                     </div>
                 </div>

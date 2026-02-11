@@ -67,7 +67,7 @@ const Footer = () => {
 
             <Link
               className="text-gray-500 hover:text-blue-600 dark:text-gray-400 dark:hover:text-blue-500 transition-transform transform hover:scale-110"
-              href="https://www.linkedin.com/in/khandaker-istekharul-haque-pranto-7a9baa369/"
+              href="https://www.linkedin.com/in/khandaker-istekharul-haque-7a9baa369/"
               target="_blank"
               rel="noopener noreferrer"
             >

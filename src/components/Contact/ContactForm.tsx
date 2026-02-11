@@ -47,13 +47,15 @@ const ContactForm = () => {
 
   return (
     <section className="relative py-20 px-6 md:px-12 bg-gradient-to-b from-transparent via-slate-900 to-transparent text-white overflow-hidden">
+      
       {/* Toast container */}
       <Toaster position="top-center" reverseOrder={false} />
 
       {/* Glow background */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(99,102,241,0.15),transparent_70%)] pointer-events-none" />
+    
 
       <div className="max-w-3xl mx-auto text-center mb-12 relative z-10">
+        
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -62,6 +64,7 @@ const ContactForm = () => {
         >
           Let’s Work Together
         </motion.h2>
+        
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -72,7 +75,7 @@ const ContactForm = () => {
           back to you soon.
         </motion.p>
       </div>
-
+ 
       <motion.form
         onSubmit={handleSubmit}
         initial={{ opacity: 0, scale: 0.95 }}
@@ -80,6 +83,7 @@ const ContactForm = () => {
         transition={{ duration: 0.5, ease: "easeOut" }}
         className="max-w-2xl mx-auto bg-white/10 backdrop-blur-lg border border-white/20 rounded-2xl p-8 shadow-xl relative z-10 space-y-6"
       >
+         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(99,102,241,0.15),transparent_70%)] pointer-events-none" />
         {/* Name */}
         <div>
           <label
